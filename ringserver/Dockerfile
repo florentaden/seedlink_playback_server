@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     libmseed-dev \
     curl \
     ca-certificates \
+    netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 # Clone and build ringserver

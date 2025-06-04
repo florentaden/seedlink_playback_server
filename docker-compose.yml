@@ -1,6 +1,6 @@
 networks:
-  ringbuffer-data:
-    name: ringbuffer-data
+  slnet:
+    name: slnet
     driver: bridge
     attachable: false
 
@@ -17,6 +17,8 @@ services:
       interval: 5s
       timeout: 2s
       retries: 5
+    networks:
+      - slnet
     ports:
       - "18000:18000"
     volumes:
@@ -30,9 +32,23 @@ services:
     depends_on:
       ringserver:
         condition: service_healthy
+    networks:
+      - slnet
     volumes:
       - ringbuffer-data:/ringserver/ring
       - ./mseed_files:/mseed_files
     environment:
-      - MSEED_FILE=example.mseed
-    command: ["python", "/app/playback.py"]
+      - MSEED_FILE=2025.001.WEL.10-HHZ.NZ.D
+    entrypoint:
+      python playback.py
+
+  client:
+    build:
+      context: ./seedlink_client
+    depends_on:
+      ringserver:
+        condition: service_healthy
+    networks:
+      - slnet
+    entrypoint: 
+      python seedlink_client.py
