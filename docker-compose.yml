@@ -1,0 +1,38 @@
+networks:
+  ringbuffer-data:
+    name: ringbuffer-data
+    driver: bridge
+    attachable: false
+
+volumes:
+  ringbuffer-data:
+    driver: local
+
+services:
+  ringserver:
+    build:
+      context: ./seedlink_server
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "18000"]
+      interval: 5s
+      timeout: 2s
+      retries: 5
+    ports:
+      - "18000:18000"
+    volumes:
+      - ringbuffer-data:/ringserver/ring
+    entrypoint:
+      /opt/ringserver/ringserver -v -Rd /ringserver/ring -Rs 100000000 -L 18000
+
+  playback:
+    build:
+      context: ./playback
+    depends_on:
+      ringserver:
+        condition: service_healthy
+    volumes:
+      - ringbuffer-data:/ringserver/ring
+      - ./mseed_files:/mseed_files
+    environment:
+      - MSEED_FILE=example.mseed
+    command: ["python", "/app/playback.py"]

@@ -26,4 +26,4 @@ WORKDIR /ringserver
 EXPOSE 18000
 
 # Start the ringserver
-ENTRYPOINT ["/opt/ringserver/ringserver", "-v", "-Rd", "/ringserver/ring", "-Rs", "100000000", "-L", "18000"]
+# ENTRYPOINT ["/opt/ringserver/ringserver", "-v", "-Rd", "/ringserver/ring", "-Rs", "100000000", "-L", "18000"]
