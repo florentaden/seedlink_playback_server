@@ -11,7 +11,7 @@ volumes:
 services:
   ringserver:
     build:
-      context: ./seedlink_server
+      context: ./ringserver
     healthcheck:
       test: ["CMD", "nc", "-z", "localhost", "18000"]
       interval: 5s
