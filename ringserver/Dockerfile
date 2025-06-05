@@ -17,8 +17,14 @@ RUN git clone https://github.com/iris-edu/ringserver.git /opt/ringserver \
     && make \
     && make install
 
+RUN git clone https://github.com/EarthScope/slinktool.git /opt/slinktool \
+    && cd /opt/slinktool \
+    && make \
+    && make install
+
 # Create working directory
 RUN mkdir -p /ringserver/ring
+RUN mkdir -p /tlog
 
 # Default config and port
 WORKDIR /ringserver

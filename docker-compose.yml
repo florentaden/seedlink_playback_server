@@ -5,7 +5,7 @@ networks:
     attachable: false
 
 volumes:
-  ringbuffer-data:
+  miniseed-data:
     driver: local
 
 services:
@@ -20,11 +20,12 @@ services:
     networks:
       - slnet
     ports:
+      - "16000:16000"
       - "18000:18000"
     volumes:
-      - ringbuffer-data:/ringserver/ring
+      - miniseed-data:/data/miniseed
     entrypoint:
-      /opt/ringserver/ringserver -v -Rd /ringserver/ring -Rs 100000000 -L 18000
+      /opt/ringserver/ringserver -vvv -Rd /ringserver/ring -m 1 -DL 16000 -SL 18000 -T /tlog -I "XX Seismic Network" -MSSCAN "/data/miniseed/ StateFile=scan.state InitCurrentState=y"
 
   playback:
     build:
@@ -35,7 +36,7 @@ services:
     networks:
       - slnet
     volumes:
-      - ringbuffer-data:/ringserver/ring
+      - miniseed-data:/data/miniseed
       - ./mseed_files:/mseed_files
     environment:
       - MSEED_FILE=2025.001.WEL.10-HHZ.NZ.D
@@ -51,4 +52,4 @@ services:
     networks:
       - slnet
     entrypoint: 
-      python seedlink_client.py
+      sh -c "sleep 20 && python seedlink_client.py"

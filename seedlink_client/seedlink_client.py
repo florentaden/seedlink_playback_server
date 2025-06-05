@@ -9,6 +9,7 @@ class MyClient(EasySeedLinkClient):
 
 # Connect to a SeedLink server
 client = MyClient('ringserver:18000')
+print("=== Client Connected ===")
 
 # Retrieve INFO:STREAMS
 streams_xml = client.get_info('STREAMS')
@@ -19,3 +20,4 @@ print(client.get_info('ALL'))
 # Select a stream and start receiving data
 client.select_stream('NZ', 'WEL', 'HHZ')
 client.run()
+
