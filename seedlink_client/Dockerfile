@@ -20,5 +20,7 @@ RUN pip install --no-cache-dir obspy
 # Copy your SeedLink client script into the container
 COPY seedlink_client.py .
 
+ENV PYTHONUNBUFFERED=1
+
 # Run the script
 # CMD ["python", "seedlink_client.py"]

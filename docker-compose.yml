@@ -25,7 +25,7 @@ services:
     volumes:
       - miniseed-data:/data/miniseed
     entrypoint:
-      /opt/ringserver/ringserver -vvv -Rd /ringserver/ring -m 1 -DL 16000 -SL 18000 -T /tlog -I "XX Seismic Network" -MSSCAN "/data/miniseed/ StateFile=scan.state InitCurrentState=y"
+      /opt/ringserver/ringserver -v -Rd /ringserver/ring -DL 16000 -SL 18000 -T /tlog -I "XX Seismic Network" -MSSCAN "/data/miniseed/ StateFile=scan.state InitCurrentState=y"
 
   playback:
     build:

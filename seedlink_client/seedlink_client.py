@@ -5,7 +5,9 @@ class MyClient(EasySeedLinkClient):
     # Implement the on_data callback
     def on_data(self, trace):
         print("=== Received trace ===")
-        print(trace)
+        starttime = trace.stats.starttime
+        endtime = trace.stats.endtime
+        print(f"[{trace.stats.starttime}] Received {trace.id} with {len(trace.data)} samples ({starttime}-{endtime})")
 
 # Connect to a SeedLink server
 client = MyClient('ringserver:18000')
