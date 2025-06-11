@@ -39,7 +39,7 @@ services:
       - miniseed-data:/data/miniseed
       - ./mseed_files:/mseed_files
     environment:
-      - MSEED_FILE=2025.001.WEL.10-HHZ.NZ.D
+      - MSEED_FILE=*
     entrypoint:
       python playback.py
 

@@ -21,5 +21,6 @@ print(client.get_info('ALL'))
 
 # Select a stream and start receiving data
 client.select_stream('NZ', 'WEL', 'HHZ')
+client.select_stream('IU', 'SNZO', 'HHZ')
 client.run()
 
