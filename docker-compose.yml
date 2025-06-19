@@ -41,7 +41,7 @@ services:
       - miniseed-data:/data/miniseed
       - ./mseed_files:/mseed_files
     environment:
-      - MSEED_FILE=kaikoura_20161114T000000_20161114T003000.mseed
+      - MSEED_FILE=*
     restart: always
     entrypoint:
       python playback.py
