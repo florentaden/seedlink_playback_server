@@ -41,7 +41,8 @@ services:
       - miniseed-data:/data/miniseed
       - ./mseed_files:/mseed_files
     environment:
-      - MSEED_FILE=*
+      - MSEED_FILE=kaikoura_20161114T000000_20161114T003000.mseed
+    restart: always
     entrypoint:
       python playback.py
 
@@ -69,4 +70,5 @@ services:
       - "8080:8080"
     depends_on:
       - client
-    entrypoint: python3 -m http.server 8080
+    entrypoint: 
+      sh -c "sleep 30 && python3 -m http.server 8080"
