@@ -51,7 +51,10 @@ print(streams_xml)
 print(client.get_info('ALL'))
 
 # Select a stream and start receiving data
-client.select_stream('NZ', 'WEL', 'HHZ')
-client.select_stream('IU', 'SNZO', 'HHZ')
+client.select_stream('NZ', 'ARPS', 'HNZ')
+client.select_stream('NZ', 'DSZ', 'HHZ')
+client.select_stream('NZ', 'SEDS', 'HN1')
+client.select_stream('NZ', 'TUWZ', 'EHZ')
+# client.select_stream('IU', 'SNZO', 'HHZ')
 client.run()
 
