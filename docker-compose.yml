@@ -7,6 +7,8 @@ networks:
 volumes:
   miniseed-data:
     driver: local
+  plots:
+    driver: local
 
 services:
   ringserver:
@@ -51,5 +53,20 @@ services:
         condition: service_healthy
     networks:
       - slnet
+    volumes:
+      - plots:/plots
     entrypoint: 
       sh -c "sleep 20 && python seedlink_client.py"
+
+  webserver:
+    build:
+      context: ./webserver
+    volumes:
+      - plots:/app/plots
+    networks:
+      - slnet
+    ports:
+      - "8080:8080"
+    depends_on:
+      - client
+    entrypoint: python3 -m http.server 8080

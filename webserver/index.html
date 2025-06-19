@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live SeedLink Server</title>
+  <meta http-equiv="refresh" content="5" />
+  <style>
+    /* Reset some margins */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: #eee;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px #0af, 0 0 15px #0af66;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border: 3px solid #0af66c;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #0af66c88;
+      margin: 0 auto;
+      display: block;
+      max-height: 80vh;
+      object-fit: contain;
+      transition: filter 0.3s ease;
+    }
+    img:hover {
+      filter: brightness(1.1);
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #666;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Latest Waveform</h1>
+  <img src="/plots/latest_waveforms.png" alt="Live Waveform" />
+  <footer>Page refreshes every 5 seconds to show newest data.</footer>
+</body>
+</html>

@@ -20,7 +20,7 @@ def write_mseed_chunks(
     stream: Stream,
     target_dir: str,
     record_length: int = 512,
-    chunk_duration: float = 5.,
+    chunk_duration: float = 2.,
     start_offset: float = 5.,
     delete_older_than: float = 3600.):
     """
